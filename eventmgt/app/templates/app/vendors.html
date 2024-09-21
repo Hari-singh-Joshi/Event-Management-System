@@ -1,0 +1,29 @@
+
+
+
+{% extends 'app/user.html' %}
+{% load static %}
+
+{% block title %}Vendors{% endblock title %}
+
+{% block main-content %}
+
+
+
+<h1>Vendors</h1>
+<ul>
+    {% for user in users %}
+        <li>
+            <a href="{% url 'vendor_products' user.id %}" class="btn btn-primary btn-lg shadow-sm px-4 py-2 rounded-pill">
+                {{ user.username }}
+                
+            </a>
+            
+            <br>
+        </li>
+        <br>
+    {% empty %}
+        <li>No vendors found.</li>
+    {% endfor %}
+</ul>
+{% endblock main-content %}

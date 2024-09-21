@@ -1,0 +1,56 @@
+{% extends 'app/user.html' %}
+{% load static %}
+
+{% block title %}User Registration{% endblock title %}
+
+{% block main-content %}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-8 col-lg-6">
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="text-center mb-4">User Registration</h2>
+                </div>
+                <div class="card-body">
+                    <form method="post" class="form-signin">
+                        {% csrf_token %}
+                        {{ form.non_field_errors }}
+                        <div class="mb-3">
+                            <label for="id_username" class="form-label">Username</label>
+                            {{ form.username }}
+                            {{ form.username.errors }}
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="id_email" class="form-label">Email address</label>
+                            {{ form.email }}
+                            {{ form.email.errors }}
+                        </div>
+                        <div class="mb-3">
+                            <label for="id_mobile_number" class="form-label">Mobile Number</label>
+                            {{ form.mobile_number }}
+                            {{ form.mobile_number.errors }}
+                        </div>
+                        <div class="mb-3">
+                            <label for="id_password1" class="form-label">Password</label>
+                            {{ form.password1 }}
+                            {{ form.password1.errors }}
+                        </div>
+                        <div class="mb-3">
+                            <label for="id_password2" class="form-label">Confirm Password</label>
+                            {{ form.password2 }}
+                            {{ form.password2.errors }}
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">Register</button>
+                    </form>
+                </div>
+                <div class="card-footer text-center">
+                    <p class="mb-0">Already have an account? <a href="{% url 'ulogin' %}" class="btn btn-secondary">Login</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock main-content %}

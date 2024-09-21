@@ -1,0 +1,46 @@
+{% extends 'app/user.html' %}
+{% load static %}
+
+{% block title %}{{ vendor.username }}'s Product{% endblock title %}
+
+{% block main-content %}
+    
+
+    {% if messages %}
+    <div class="messages">
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}">
+                {{ message }}
+            </div>
+        {% endfor %}
+    </div>
+{% endif %}
+    <div class="container mt-5">
+        <h1>Product of {{ vendor.username }}</h1>
+        <ul class="list-group">
+            {% for product in products %}
+            <div class="col-md-4">
+                <div class="card mb-4">
+                    <img src="{{ product.image.url }}" class="card-img-top" alt="{{ product.name }}">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ product.name }}</h5>
+                        
+                        <p class="card-text">{{ product.Description }}</p>
+                        <p class="card-text"><strong>Price:</strong> Rs.{{ product.Price }}</p>
+                        {% csrf_token %}
+                        <form action="{% url 'add_to_cart' vendor_id=product.vendor.id %}" class="d-inline">
+                        <input type="hidden" name="prod_id" value={{product.id}} />
+                        <button type="submit" class="btn btn-primary shadow px-5 py-2">Add to Cart</button>
+                      </form>
+                       
+                       
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+                <li class="list-group-item">No products found.</li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endblock main-content %}
+

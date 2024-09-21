@@ -1,0 +1,33 @@
+{% extends 'app/vendor.html' %}
+{% load static %}
+
+{% block title %}Display Product{% endblock title %}
+
+{% block main-content %}
+
+    <div class="container mt-5">
+        <h2>Products</h2>
+        <div class="row">
+            {% for product in products %}
+            <div class="col-md-4">
+                <div class="card mb-4">
+                    <img src="{{ product.image.url }}" class="card-img-top" alt="{{ product.name }}">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ product.name }}</h5>
+                        
+                        <p class="card-text">{{ product.Description }}</p>
+                        <p class="card-text"><strong>Price:</strong> Rs.{{ product.Price }}</p>
+                        <p class="card-text"><strong>Status:</strong> {{ product.status }}</p>
+                        <!-- Delete button/link -->
+                        <form method="post" action="{% url 'delete_product' product.id %}" style="display:inline;">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+{% endblock main-content %}

@@ -1,0 +1,52 @@
+#to make virtual environment
+1. pip install virtualenv
+2. virtualenv env
+3. cd env cd scripts
+4. activate
+5. pip list
+6. ./activate.bat
+7. cd ..
+8. .\scripts\activate
+9. pip install
+10. pip install django
+11. pip install pillow -for images
+12. cd ..
+(main folder)
+now:
+start project######
+1. djnago-admin startproject project_name
+2. cd project_name
+3. python manage.py runserver
+4. python manage.py startapp app
+5. in setting: in installed app:- "app",
+########
+#####basic setup
+1. inside app create template folder and inside template folder create app folder. and inside app folder create index.html
+2. inside app folder , create urls.py
+
+3. inside app create static folder and inside static folder create app folder and inside app folder create folders:- images, css,js and inisde images folder create folders:- banner and product
+
+#####
+change index.html to base.html (name)
+{% load static %}-to load static folder
+<link rel="stylesheet" href="{% static 'app/css/style.css' %}">
+
+ <script src="{% static 'app/js/myscript.js' %}"></script>
+ (also include required bootstrap files)
+
+ <title>Dairy Product | {% block title %}{% endblock title %}</title> #this help to pass title through different page
+  
+  and crate home.html
+  #they help to pass content in base.html file
+{% extends 'app/base.html'%}# it will copy and paste all base.html content
+{% load static %}
+{% block title %} Home {% endblock title %} 
+{% block main-content %}
+<h1> Welcome Dairy Product Site....</h1>
+{% endblock main-content %}
+
+
+##for super user
+python manage.py makemigrations
+python manage.py migrate
+python manage.py createsuperuser
